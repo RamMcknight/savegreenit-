@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - SaveGreenIT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #059669;
+            --primary-dark: #047857;
+            --primary-light: #10b981;
+            --secondary: #0f172a;
+            --accent: #06b6d4;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --text-lighter: #94a3b8;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-dark: #f1f5f9;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav .dropdown {
+            position: relative;
+        }
+
+        .nav .dropdown-content {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: white;
+            box-shadow: var(--shadow-xl);
+            border-radius: 12px;
+            padding: 0.75rem 0;
+            min-width: 240px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .nav .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav .dropdown-content a {
+            display: block;
+            padding: 0.85rem 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text);
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .nav .dropdown-content a:hover {
+            background: var(--bg-light);
+            color: var(--primary);
+            border-left-color: var(--primary);
+            padding-left: 1.75rem;
+        }
+
+        .nav .dropdown-content a::after {
+            display: none;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white !important;
+            padding: 0.875rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
+        }
+
+        .cta-button::after {
+            display: none !important;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text);
+            transition: var(--transition);
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 73px;
+            background: linear-gradient(135deg, #0c4a3e 0%, #064e3b 50%, #065f46 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-header h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .breadcrumb i {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+
+        .breadcrumb span {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Terms Content */
+        .terms-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .terms-date {
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-dark) 100%);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 4rem;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .terms-date i {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        .terms-date p {
+            color: var(--text);
+            font-weight: 600;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .terms-section {
+            margin-bottom: 3.5rem;
+            padding-bottom: 3.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terms-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .terms-section h2 {
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .terms-section h2::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .terms-section p {
+            color: var(--text-light);
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .terms-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .terms-section ul li {
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .terms-section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-light);
+            border-radius: 50%;
+        }
+
+        .terms-section strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .contact-info-box {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        .contact-info-box p {
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            padding: 5rem 2rem 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand img {
+            height: 50px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .social-links a {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            color: white;
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.875rem;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-light);
+            padding-left: 5px;
+        }
+
+        .footer-column ul li a::before {
+            content: '→';
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover::before {
+            opacity: 1;
+        }
+
+        .footer-contact p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact i {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .footer-bottom-links a:hover {
+            color: white;
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(5, 150, 105, 0.4);
+            z-index: 999;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .chat-widget:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 15px 40px rgba(5, 150, 105, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav {
+                position: fixed;
+                top: 73px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            .nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav .dropdown-content {
+                position: static;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                border: none;
+                background: var(--bg-light);
+                margin-top: 1rem;
+                display: none;
+            }
+
+            .nav .dropdown.active .dropdown-content {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .page-header {
+                padding: 3rem 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            .terms-content {
+                padding: 3rem 1.5rem;
+            }
+
+            .terms-section h2 {
+                font-size: 1.375rem;
+            }
+
+            .terms-section p,
+            .terms-section ul li {
+                font-size: 1rem;
+            }
+
+            .terms-date {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a class="logo" href="index.html">
+                <img alt="SaveGreenIT" src="https://savegreenit.com/wp-content/uploads/2018/11/cropped-Logo_retina-1.png"/>
+            </a>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav" id="nav">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a href="#services">Services <i class="fas fa-chevron-down" style="font-size: 0.75rem; margin-left: 0.25rem;"></i></a>
+                    <div class="dropdown-content">
+                        <a href="service-managed-it.html">Managed IT</a>
+                        <a href="service-it-help-desk.html">IT Help Desk</a>
+                        <a href="service-cloud-solutions.html">Cloud Solutions</a>
+                        <a href="service-disaster-recovery.html">Disaster Recovery</a>
+                        <a href="service-unified-storage.html">Unified Storage</a>
+                        <a href="service-firewall-security.html">Firewall and Security</a>
+                        <a href="service-data-center.html">Data Center</a>
+                        <a href="service-remote-support.html">Remote Support</a>
+                    </div>
+                </div>
+                <a href="index.html#about">About Us</a>
+                <a href="remote-support.html">Remote Support Center</a>
+                <a href="index.html#contact">Contact</a>
+                <a class="cta-button" href="tel:+18086003272">
+                    <i class="fas fa-phone"></i> (808) 600-3272
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Terms and Conditions</span>
+            </nav>
+            <h1>Terms and Conditions</h1>
+            <p>Please read these terms carefully before using our services</p>
+        </div>
+    </section>
+
+    <!-- Terms Content -->
+    <section class="terms-content">
+        <div class="terms-date">
+            <i class="fas fa-calendar-alt"></i>
+            <p>Last Updated: February 9, 2024</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing and using SaveGreenIT's website and services, you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to abide by these terms, please do not use our services.</p>
+            <p>These Terms and Conditions constitute a legally binding agreement between you and SaveGreenIT regarding your use of our website and services.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>2. Description of Services</h2>
+            <p>SaveGreenIT provides IT support, managed services, cloud solutions, and related technology services to businesses and individuals. All services are subject to these Terms and Conditions unless otherwise specified in a separate written agreement.</p>
+            <p>Our services include but are not limited to:</p>
+            <ul>
+                <li>Managed IT services and infrastructure support</li>
+                <li>IT help desk and technical support</li>
+                <li>Cloud solutions and migration services</li>
+                <li>Disaster recovery and business continuity</li>
+                <li>Network security and firewall management</li>
+                <li>Data center services and storage solutions</li>
+                <li>Remote support and troubleshooting</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2>3. Use of Services</h2>
+            <p>You agree to use our services only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+            <ul>
+                <li>Use our services in any way that violates applicable laws or regulations</li>
+                <li>Attempt to gain unauthorized access to any portion of our systems</li>
+                <li>Interfere with or disrupt the integrity or performance of our services</li>
+                <li>Transmit any viruses, malware, or harmful code</li>
+                <li>Engage in any activity that could damage, disable, or impair our services</li>
+                <li>Reverse engineer or attempt to extract source code from our software</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2>4. Service Level Agreements</h2>
+            <p>Service level agreements (SLAs) may apply to specific services. Details of response times, uptime guarantees, and support availability will be outlined in your service agreement or contract with SaveGreenIT.</p>
+            <p>Standard support hours are Monday through Friday, 8:00 AM to 6:00 PM Hawaii Standard Time, excluding holidays. Emergency support may be available outside these hours based on your service agreement.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>5. Payment Terms</h2>
+            <p>Payment terms for services will be specified in your service agreement. Unless otherwise stated:</p>
+            <ul>
+                <li>All fees are due within 30 days of invoice date</li>
+                <li>Late payments may incur interest charges at the rate of 1.5% per month</li>
+                <li>Service may be suspended for accounts with overdue balances exceeding 60 days</li>
+                <li>All prices are in US Dollars unless otherwise specified</li>
+                <li>Taxes and applicable fees are the responsibility of the client</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2>6. Confidentiality and Data Protection</h2>
+            <p>SaveGreenIT is committed to protecting your data and maintaining confidentiality. We implement industry-standard security measures and comply with applicable data protection regulations. For complete details, please refer to our Privacy Policy.</p>
+            <p>We will not disclose your confidential information to third parties except as required by law or with your express consent.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>7. Limitation of Liability</h2>
+            <p>SaveGreenIT shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from the use of our services. Our total liability shall not exceed the amount paid for services in the twelve (12) months preceding the claim.</p>
+            <p>We do not guarantee that our services will be uninterrupted or error-free, and we are not responsible for any data loss that may occur during service delivery.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>8. Termination</h2>
+            <p>Either party may terminate the service agreement with written notice as specified in the contract. Upon termination, you remain responsible for all fees incurred prior to termination.</p>
+            <p>We reserve the right to terminate or suspend access to our services immediately, without prior notice, for conduct that we believe violates these Terms or is harmful to other users or third parties.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>9. Changes to Terms</h2>
+            <p>SaveGreenIT reserves the right to modify these Terms and Conditions at any time. Changes will be effective immediately upon posting to our website. Continued use of our services constitutes acceptance of the modified terms.</p>
+            <p>We will make reasonable efforts to notify clients of significant changes via email or through our website.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>10. Governing Law</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the State of Hawaii, without regard to its conflict of law provisions.</p>
+            <p>Any disputes arising from these Terms shall be resolved in the courts located in Honolulu County, Hawaii.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>11. Contact Information</h2>
+            <p>For questions about these Terms and Conditions, please contact us:</p>
+            <div class="contact-info-box">
+                <p><strong>SaveGreenIT</strong></p>
+                <p><i class="fas fa-envelope" style="color: var(--primary); margin-right: 0.5rem;"></i> helpdesk@savegreenit.com</p>
+                <p><i class="fas fa-phone" style="color: var(--primary); margin-right: 0.5rem;"></i> (808) 600-3272</p>
+                <p><i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 0.5rem;"></i> Kailua, HI, United States</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img alt="SaveGreenIT" src="https://savegreenit.com/wp-content/uploads/2018/11/cropped-Logo_retina-1.png"/>
+                    <p>Your trusted partner for professional IT solutions. We help businesses thrive with cutting-edge technology and exceptional support services.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="remote-support.html">Remote Support Center</a></li>
+                        <li><a href="terms.html">Terms and Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> (808) 600-3272</p>
+                    <p><i class="fas fa-envelope"></i> helpdesk@savegreenit.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kailua, HI, United States</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SaveGreenIT. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="terms.html">Terms and Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" onclick="alert('Chat feature coming soon! Contact us at (808) 600-3272')">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(function() {
+                preloader.classList.add('hidden');
+            }, 500);
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const nav = document.getElementById('nav');
+
+        mobileToggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+
+        // Mobile dropdown toggle
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav a:not(.dropdown > a)');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                nav.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
